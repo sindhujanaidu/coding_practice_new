@@ -59,3 +59,28 @@ function main() {
 
     ws.end();
 }
+
+//using strings
+function reversedBinary(num) {
+    // Write your code here
+    let reversed = BigInt(0);
+    const one = BigInt(1);
+    let count = 32;
+    const binaryNum = num.toString(2);
+    const arr = binaryNum.split("").reverse();
+    const lenOfBin = arr.length;
+    const finalArr = arr.concat(Array(32-lenOfBin).fill(0));
+    return finalArr.join("");
+}
+
+function main() {
+    const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
+
+    const T = parseInt(readLine().trim(), 10);
+    for(let i = 0; i<T; i++) {
+        const number = BigInt(readLine().replace(/\s+$/g, ''));
+        const result = reversedBinary(number);
+        ws.write(parseInt(result, 2) + '\n');
+    }
+    ws.end();
+}
