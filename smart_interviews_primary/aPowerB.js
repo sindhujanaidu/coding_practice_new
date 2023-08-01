@@ -37,8 +37,10 @@ function checkBit(n, i) {
 const one = BigInt(1);
 const mod = BigInt(1000000007);
 
+// solution 1
 function aPowerB(a, b) {
-    let ans = one , x = a;
+    let ans = one;
+    let x = a;
     while(b != 0) {
         if((b & one) == one) { // or checkBit(b, 0)
             ans = ans * x;
@@ -47,6 +49,19 @@ function aPowerB(a, b) {
         b = b >> one;
     }
     return ans % mod;
+}
+
+// solution 2
+function aPowerB2(a, b) {
+    let ans = one;
+    while(b!= 0) {
+        if(checkBit(b, zero)) {
+            ans = (ans * a) % mod;
+        }
+        a = (a * a) % mod;
+        b = b >> one;
+    }
+    return ans;
 }
 
 function main() {
