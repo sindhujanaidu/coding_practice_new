@@ -1,4 +1,4 @@
-// https://leetcode.com/problems/subsets/description/
+// https://leetcode.com/problems/number-of-1-bits/description/
 
 // bit manipulation
 
