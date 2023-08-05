@@ -24,6 +24,9 @@ function readLine() {
     return inputString[currentLine++];
 }
 
+const one = BigInt(1);
+const zero = BigInt(0);
+
 /*
  * Complete the 'countSetBits' function below.
  */
@@ -31,19 +34,20 @@ function readLine() {
 function countSetBits(numb) {
     // Write your code here
     let count = 0;
-    // while(num > 0) {
-    //     num = num & ( num - 1);
-    //     count++;
-    // }
     let num = numb;
-    const one = BigInt(1);
+    // solution 1
+    // while(num > 0) {
+    //     if((num & one) == one) {
+    //         count++;
+    //     }
+    //     num = num >> one;
+    // }
+    // return count == 1 ? "True" : "False";
+    
+    // solution 2
     while(num > 0) {
-        if((num & one) == one) {
-            count++;
-        }
-        num = num >> one;
+        return ((num & (num-one)) == zero) ? "True" : "False"
     }
-    return count == 1 ? "True" : "False";
 }
 
 function main() {
