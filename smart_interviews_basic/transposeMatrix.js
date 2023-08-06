@@ -37,10 +37,19 @@ function main() {
         arr[i] = readLine().split(" ");
         matArr.push(arr[i]);
     }
+    // solution 1
+    // for (let i = 0; i < matArr[0].length; i++) {
+    //     const col = []
+    //     for (let j = 0; j < matArr.length; j++) {
+    //       col.push(matArr[j][i]);
+    //     }
+    //     ws.write(col.join(" ")+"\n");
+    // }
 
-    for (let i = 0; i < matArr[0].length; i++) {
+    // solution 2
+    for (let i = 0; i < columnlen; i++) {
         const col = []
-        for (let j = 0; j < matArr.length; j++) {
+        for (let j = 0; j < rowlen; j++) {
           col.push(matArr[j][i]);
         }
         ws.write(col.join(" ")+"\n");
