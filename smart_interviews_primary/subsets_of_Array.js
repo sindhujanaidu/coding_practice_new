@@ -30,27 +30,6 @@ function readLine() {
  * Complete the 'subsetsOfArray' function below.
  */
 
-
-const one = BigInt(1);
-const zero = BigInt(0);
-const maxBit = BigInt(32);
-const mod = BigInt(1000000007);
-
-function checkBit(n, i) {
-    return (n>>i) & one;
-}
-
-function countBits(n, i) {
-    let count = 0;
-    while(n>zero) {
-        if(checkBit(n, zero) == one) {
-            count++;
-        }
-        n = n >> one;
-    }
-    return count;
-}
-
 function subsetsOfArray(arr, len, subset, output) {
     // Write your code here
     if(len == 0) {
