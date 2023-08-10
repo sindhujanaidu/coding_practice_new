@@ -20,3 +20,29 @@ var subsets = function(nums) {
     }
     return res;
 };
+
+// recursion & backtracking
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+
+var recursion = function(arr, len, temp, final) {
+    if(len == 0) {
+        return;
+    }
+
+    for(let i=0; i<len; i++) {
+        temp.push(arr[i]);
+        final.push([...temp]);
+        recursion(arr.slice(i+1, len), len-(i+1), temp, final);
+        temp.pop();
+    }
+
+    return final;
+}
+var subsets = function(nums) {
+    const res = recursion(nums, nums.length, [], [[]]);
+    return res;
+};
