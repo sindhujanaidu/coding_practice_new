@@ -48,6 +48,7 @@ function processData(input) {
         let num = BigInt(inp[i+one]);
         let count = zero;
         let max = zero;
+	// solution 1
         while(num > zero) {
             if((num & one) == one) {
                 count++;
@@ -58,6 +59,13 @@ function processData(input) {
             num = num >> one;
         }
         console.log(max+'');
+
+	// solution 2
+	while(num > zero) {
+	    num = num & (num << one);
+            count++;
+        }
+        console.log(count+'');
     }
 } 
 
