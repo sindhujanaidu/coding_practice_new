@@ -35,4 +35,38 @@ Test Case 2
 Possible values: 10+1 = 10^1, 10+4=10^4, 10+5=10^5
 
 //solution
+const zero = BigInt(0);
+const one = BigInt(1);
+function processData(input) {
+	/* Enter your code here. Read input from STDIN. Print output to STDOUT */ 
+    let lines = input.trim().split("\n");
+    let T = parseInt(lines[0]);
+    for(let i =0; i<T; i++ ) {
+        let num = BigInt(lines[i+1]);
+        let count = zero;
+        // solution 1 // timeout error
+        // for(let j=one; j<num; j++) {
+        //     if((num ^ j) == (num + j)) {
+        //         count++;
+        //     }
+        // }
+        while(num > zero) {
+            if((num & one) == zero) {
+                count++;
+            }
+            num = num >> one;
+        }
+        console.log((one<<count)-one+'')
+    }
+} 
 
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+_input = "";
+process.stdin.on("data", function (input) {
+    _input += input;
+});
+
+process.stdin.on("end", function () {
+   processData(_input);
+});
