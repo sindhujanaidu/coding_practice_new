@@ -94,3 +94,81 @@ function main() {
     }
     ws.end();
 }
+
+// ************************Using merge sort***************************** //
+
+function MS(arr, low, high) {
+    if(low == high) return;
+    
+    let mid = parseInt((high+low)/2);
+    MS(arr, low, mid);
+    MS(arr, mid+1, high);
+    
+    mergeArray(arr, low, high)
+}
+
+function mergeArray(arr, low, high) {
+    let mid = parseInt((high+low)/2);
+    let p1 = low, p2 = mid+1;
+    let i=0;
+    let temp = new Array(high-low+1)
+    while((p1<=mid )&& (p2<=high)) {
+        if(arr[p1] < arr[p2]) {
+            temp[i++] = arr[p1];
+            p1++;
+        } else {
+            temp[i++] = arr[p2];
+            p2++;
+        }
+    }
+    while(p1<=mid) {
+        temp[i++] = arr[p1];
+        p1++;
+    }
+    while(p2<=high) {
+        temp[i++] = arr[p2];
+        p2++;
+    }
+    
+    for(let i=low; i<=high; i++) {
+        arr[i] = temp[i-low];
+    }
+}
+
+function processData(input) {
+    //Enter your code here
+    // const lines = input.trim().split("\n");
+    const T = parseInt(readLine());//lines[0]);
+    for(let i=0; i<T; i++) {
+        let len = parseInt(readLine());//lines[i+1]);
+        let arr = readLine().trim().split(" ").map(e => parseInt(e));//lines[i+2].trim()
+        
+        // console.log("before", arr)
+        MS(arr, 0, len-1);
+        // console.log("after", arr)
+        
+        let str = [];
+        for(let i=0; i<len; i++) {
+            if(arr[i] == arr[i+1]) {
+                str.push(arr[i]);
+            }
+        }
+        console.log(str.join(" "))
+    }
+} 
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+input = "";
+process.stdin.on("data", function (inp) {
+    input += inp;
+});
+let currentLine = 0;
+function readLine() {
+    return input[currentLine++];
+}
+
+process.stdin.on("end", function () {
+input = input.split("\n");
+   processData(input);
+});
