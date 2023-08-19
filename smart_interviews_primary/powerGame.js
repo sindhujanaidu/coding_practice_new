@@ -32,7 +32,7 @@ function readLine() {
 function powerGame(a, b, len) {
     // Write your code here
     // let a1=0, b1=0, count=BigInt(0);
-    // try 1 - not working
+    // try 1 with descending order of arrays - not working
     // while(a1<len && b1<len) {
     //     if(a[a1] > b[b1]) {
     //         count++;
