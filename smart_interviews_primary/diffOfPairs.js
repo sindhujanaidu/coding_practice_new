@@ -29,19 +29,9 @@ function readLine() {
  * Complete the 'diffOfPairs' function below.
  */
 
+// *** SOLUTION 1 - USING hashmap
 function diffOfPairs(arr, len, k) {
     // Write your code here
-    // 2 pointer tried but didnt work
-    // let p1 = 0, p2 = len - 1;
-    // while(p1!=p2) {
-    //     if(arr[p2] > k+arr[p1]) {
-    //         p1++;
-    //     } else if(arr[p2] < k+arr[p1]) {
-    //         p2--;
-    //     } else {
-    //         return "true";
-    //     }
-    // }
     let obj = {};
     for(let i=0; i<len; i++) {
         obj[arr[i]] = i;
@@ -53,6 +43,25 @@ function diffOfPairs(arr, len, k) {
     }
     
     return "false";
+}
+
+// *** SOLUTION 2 - USING 2 Pointers
+function diffOfPairs(arr, len, k) {
+    // Write your code here
+    let p1 = 0, p2 = 1, ans = "false";
+    while(p2<len && p1<len) {//  && p2<len
+        if (p1 != p2 && Math.abs(arr[p2] - arr[p1]) == Math.abs(k)) {
+            ans="true";
+            break;
+        }
+        if (Math.abs(arr[p2] - arr[p1]) < Math.abs(k)) {
+           p2++;
+        }
+        else {
+            p1++;
+        }
+    }
+    return ans;
 }
 
 function main() {
