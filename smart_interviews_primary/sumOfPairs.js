@@ -28,7 +28,7 @@ function readLine() {
 /*
  * Complete the 'sumOfPairs' function below.
  */
-
+// =========== SOLUTION 1
 function sumOfPairs(arr, len, k) {
     // Write your code here
     let p1 = 0, p2 = len - 1;
@@ -52,6 +52,43 @@ function main() {
         const [len, k] = readLine().split(" ").map(e=>parseInt(e));
         const arr = readLine().split(" ").map(e=>parseInt(e)).sort((a,b) => a-b);
         const result = sumOfPairs(arr, len, k);
+        ws.write(result + '\n');
+    }
+    ws.end();
+}
+
+// =========== SOLUTION 2
+function BSR(arr, b, low, high) {
+    if(low>high) return false;
+    let mid = parseInt((low+high)/2);
+    if(arr[mid] == b) return true;
+    if(b<arr[mid]) {
+        return BSR(arr, b, low, mid-1);
+    } else {
+        return BSR(arr, b, mid+1, high);
+    }
+}
+
+function solve(arr, len, k) {
+    // Write your code here
+    for(let i = 0; i<len; i++) {
+        let a = arr[i];
+        let b = k-a;
+        if(BSR(arr, b, i+1, len-1)) {
+            return "True";
+        }
+    }
+    return "False";
+}
+
+function main() {
+    const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
+
+    const T = parseInt(readLine().trim());
+    for(let i = 0; i<T; i++) {
+        const [len, k] = readLine().split(" ").map(e=>parseInt(e));
+        const arr = readLine().split(" ").map(e=>parseInt(e)).sort((a,b) => a-b);
+        const result = solve(arr, len, k);
         ws.write(result + '\n');
     }
     ws.end();
