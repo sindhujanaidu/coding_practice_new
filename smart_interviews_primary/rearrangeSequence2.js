@@ -46,6 +46,29 @@ function rearrangeSequence2(arr, len) {
     return ans;
 }
 
+// solution 2
+function rearrangeSequence2(arr, len) {
+    // Write your code here
+    let ans = 0, map;
+    for(let i=0; i<len; i++) {
+        let sum = 0;
+        let map = {};
+        let a = Number.MAX_VALUE;
+        let b = Number.MIN_VALUE;
+        for(let j=i; j<len; j++) {
+            if(arr[j] in map) break;
+            map[arr[j]] = 1;
+            sum += arr[j];
+            a = Math.min(a, arr[j]);
+            b = Math.max(b, arr[j]);
+            if(sum ==(((b*(b+1))/2) - ((a*(a-1))/2))) {
+                ans = Math.max(ans, b-a+1);
+            }
+        }
+    }
+    return ans;
+}
+
 function main() {
     const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
