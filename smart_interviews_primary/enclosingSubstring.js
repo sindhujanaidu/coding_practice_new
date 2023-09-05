@@ -29,30 +29,42 @@ function readLine() {
  * Complete the 'enclosingSubstring' function below.
  */
 
-// function enclosingSubstring(A, B) {
-//     // Write your code here
-//     const lenA = A.length, lenB = B.length;
-//     let ca = [...Array(26)].fill(0), cb = [...Array(26)].fill(0);
-//     let ans = lenA + 1;
-//     for(let i=0; i<lenB; i++) {
-//         cb[B.charCodeAt(i) - 97]++;
-//     }
-    
-//     for(let i=0; i<lenA; i++) {
-//         for(let j=i; j<lenA; j++) {
-//             ca[A.charCodeAt(p2) - 97]++;
-//             if(check(ca, cb)) {
-//                 ans = Math.min(ans, j-i+1);
-//                 p1++
-//             } else {
-//                 p2++;
-//             }
-//         }
-//     }
-//     return ans;
-// }
+// solution 5 using 2 pointers count array
+function enclosingSubstring(s, n1, t, n2) {
+    // Write your code here
+    let ca = [...Array(26)].fill(0);
+    let cb = [...Array(26)].fill(0);
 
-// solution 5 from notes using pointers
+    for(let i=0; i<n2; i++) {
+        console.log(t.charCodeAt(i) - 97)
+        cb[t.charCodeAt(i) - 97]++;
+        ca[s.charCodeAt(i) - 97]++;
+    }
+    console.log(ca)
+    let p1 = 0, p2 = n2;
+    let ans = 99999999;
+    while(p1<p2) {
+        if(check(ca, cb) && p1<n1) {
+            ans = Math.min(ans, p2-p1);
+            ca[s.charCodeAt(p1) - 97]--;
+            p1++;
+        } else if(p2< n1) {
+            ca[s.charCodeAt(p2) - 97]++;
+            p2++;
+        } else{
+            break;
+        }
+    }
+    return ans == 99999999 ?-1 : ans;
+}
+function check(ca, cb) {
+    for(let i=0; i<26; i++) {
+        if(ca[i] < cb[i]) return false;
+    }
+    return true;
+}
+
+// solution 5 from notes using pointers dictionary
 function enclosingSubstring(A, lenA, B, lenB) {
     // Write your code here
     let mapA = {}, mapB = {};
