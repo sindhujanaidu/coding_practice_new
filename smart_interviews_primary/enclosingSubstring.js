@@ -29,7 +29,36 @@ function readLine() {
  * Complete the 'enclosingSubstring' function below.
  */
 
-// solution 5 using 2 pointers count array
+// solution 4 with count array and carry forwarding  (M+N^2 * (1 + 26))
+function enclosingSubstring(s, n1, t, n2) {
+    // Write your code here
+    let cb = [...Array(26)].fill(0);
+
+    for(let i=0; i<n2; i++) {
+        cb[t.charCodeAt(i) - 97]++;
+        // ca[s.charCodeAt(i) - 97]++;
+    }
+    let ans = 99999999;
+    for(let i=0; i<n1; i++) {
+        let ca = [...Array(26)].fill(0);
+        for(let j=i; j<n1; j++) {
+            ca[s.charCodeAt(j) - 97]++;
+            if(check(ca, cb)) {
+                ans = Math.min(ans, j - i +1);
+            }
+        }
+    }
+    return ans == 99999999 ? -1 : ans;
+}
+function check(ca, cb) {
+    for(let i=0; i<26; i++) {
+        if(ca[i] >= cb[i]) continue;
+        else return false;
+    }
+    return true;
+}
+
+// solution 5 using 2 pointers count array  (M + N*(1+26) + N*(1+26)) for each pointer N*(1+26)
 function enclosingSubstring(s, n1, t, n2) {
     // Write your code here
     let ca = [...Array(26)].fill(0);
@@ -64,7 +93,7 @@ function check(ca, cb) {
     return true;
 }
 
-// solution 5 from notes using pointers dictionary
+// solution 5 from notes using pointers dictionary  (M + N*(1+26) + N*(1+26)) for each pointer N*(1+1 ( O(1) for dict))
 function enclosingSubstring(A, lenA, B, lenB) {
     // Write your code here
     let mapA = {}, mapB = {};
