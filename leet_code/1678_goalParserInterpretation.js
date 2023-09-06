@@ -5,26 +5,19 @@
  * @return {string}
  */
 var interpret = function(command) {
-    // let str = '';
-    // let arr = command.split("");
-    // for(let s of arr) {
-    //     // console.log(s)
-    //     if(s == "()") {
-    //         if(s == "(al)") {
-    //         str += "o";
-    //     } else if(s == "(al)") {
-    //         str += "al";
-    //     } else {
-    //         str += s;
-    //     }
-    // }
-    // const len = acommand.length;
-    // const sub = '';
-    // for(let i=0; i<len; i++) {
-    //     const s = command[i];
-    //     if(s == "(") {
-    //         sub += "("
-    //     }
-    // }
+    // SOLUTION 1: brute force
+    const len = command.length;
+    let sub = '';
+    for(let i=0; i<len; i++) {
+        const s = command[i];
+        if(s != "(" && s != ")") {
+            sub += s;
+        } else if(s == ")" && command[i-1] == "(") {
+            sub += 'o';
+        }
+    }
+    return sub;
+
+    // SOLUTION 2: Inbuilt functions
     return command.replaceAll("()", 'o').replaceAll("(al)", 'al');
 };
