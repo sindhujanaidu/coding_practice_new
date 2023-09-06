@@ -5,6 +5,8 @@
  * @param {number} k
  * @return {number}
  */
+
+// SOLUTION 1 - USING OBJECT
 var findKthPositive = function(arr, k) {
     let obj = new Object();
 
@@ -20,4 +22,16 @@ var findKthPositive = function(arr, k) {
             if(count == k) return currentNum;
         }
     }
+};
+
+//SOLUTION 2 - USING FOR OF
+var findKthPositive = function(arr, k) {
+     let count = 0;
+  for (item of arr) {
+    if (item <= k + count) {
+      count++;
+    }
+  }
+
+  return k + count;
 };
