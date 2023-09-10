@@ -1,3 +1,5 @@
+contest link: https://hive.smartinterviews.in/contests/dsa-b34-ic2/problems
+
 /*
 Check Subsequence
 
