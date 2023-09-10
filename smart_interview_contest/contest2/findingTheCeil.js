@@ -48,3 +48,52 @@ Output
 Explanation
 Self Explanatory
 */
+
+function processData(input) {
+	/* Enter your code here. Read input from STDIN. Print output to STDOUT */ 
+    const len = parseInt(read());
+    const arr = read().split(" ").map(e => parseInt(e));
+    const Q = parseInt(read());
+    const arr1 = arr.sort((a,b) => a-b)
+    for(let j=0; j<Q; j++) {
+        const q = parseInt(read());
+        const res = findCeil(arr1, len, q);
+        console.log(res)
+    }
+}
+
+function findCeil(arr, len, q) {
+    let l = 0, h = len-1, m, ans=2147483647;
+    while(l <= h) {
+        m = parseInt((l+h)/2);
+        const mid = arr[m]
+        if(mid == q) {
+            return q;
+        }
+        if(mid > q) {
+            ans = mid;
+            h = m - 1;
+        } else {
+            l = m + 1;
+        }
+    }
+    return ans;
+}
+
+process.stdin.resume();
+process.stdin.setEncoding("ascii");
+input = "";
+inputArr = []
+process.stdin.on("data", function (data) {
+    input += data;
+});
+
+process.stdin.on("end", function () {
+    inputArr = input.split('\n')
+   processData(inputArr);
+});
+
+line = 0;
+function read() {
+    return inputArr[line++]
+}
