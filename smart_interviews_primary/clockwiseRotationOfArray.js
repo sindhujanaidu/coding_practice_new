@@ -1,6 +1,13 @@
 // https://www.hackerrank.com/contests/smart-interviews/challenges/si-clockwise-rotation-of-array
 
 
+3 10 4 5 10 7 2
+
+5 4 10 3  | 2 7 10
+
+10 7 2 3 10 4 5
+
+
 'use strict';
 
 const fs = require('fs');
