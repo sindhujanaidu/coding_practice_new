@@ -37,32 +37,37 @@ function reverseTheSentence(str) {
     // Write your code here
     const len = str.length;
     // solution 1: without using split, created stack(array)
+    // let stack = [];
+    // for(let b = 0; b<len; b++) {
+    //     stack.push(str[b]);
+    // }
+    // let main = "";
+    // let temp = "";
+    // for(let b = 0; b < len; b++) {
+    //     let char = stack.pop();
+    //     if(char == " ") {
+    //         main = (main == "") ? temp : main + " " + temp;
+    //         temp = "";
+    //     } else {
+    //         temp = char + temp;
+    //     }
+    //     if(b == len-1) {
+    //         main = (main == "") ? temp : main + " " + temp;
+    //     }
+    // }
+    // return main;
+
+    // solution 2: using split and array (stack)
+    let main = "";
     let stack = [];
     for(let b = 0; b<len; b++) {
         stack.push(str[b]);
     }
-    let main = "";
-    let temp = "";
-    for(let b = 0; b < len; b++) {
+    for(let i = len-1; i>=0; i--) {
         let char = stack.pop();
-        if(char == " ") {
-            main = (main == "") ? temp : main + " " + temp;
-            temp = "";
-        } else {
-            temp = char + temp;
-        }
-        if(b == len-1) {
-            main = (main == "") ? temp : main + " " + temp;
-        }
+        main = (main == "") ? char : main + " " + char;
     }
     return main;
-    // solution 2: using split and array (stack)
-    // let len = str.length;
-    // let ans = [];
-    // for(let i = len-1; i>=0; i--) {
-    //     ans.push(str[i])
-    // }
-    // return ans.join(" ")
 }
 
 function main() {
@@ -70,8 +75,8 @@ function main() {
 
     const T = parseInt(readLine().trim());
     for(let i=0; i<T; i++) {
-        let str = readLine().trim(); // solution 1
-        // let str = readLine().trim().split(" "); // solution 2
+        // let str = readLine().trim(); // solution 1
+        let str = readLine().trim().split(" "); // solution 2
         let ans = reverseTheSentence(str);
         ws.write(ans + '\n');
     }
