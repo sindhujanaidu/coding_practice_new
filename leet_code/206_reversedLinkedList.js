@@ -34,10 +34,10 @@ var reverseList = function(head) {
   let rev = null;
   let current = head;
   while(current != null) {
-     temp = current.next;
+     let future = current.next;
      current.next = rev;
      rev = current;
-     current = temp;
+     current = future;
   }
   return rev;
 };
