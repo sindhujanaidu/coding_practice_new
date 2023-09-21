@@ -31,4 +31,13 @@ var reverseList = function(head) {
     return rev;
 
   // sol 2
+  let rev = null;
+  let current = head;
+  while(current != null) {
+     temp = current.next;
+     current.next = rev;
+     rev = current;
+     current = temp;
+  }
+  return rev;
 };
