@@ -17,3 +17,17 @@ var maxDepth = function(s) {
     }
     return maxCount;
 };
+
+// sol 2: using stack
+var maxDepth = function(s) {
+    let max = 0, stack = [];
+    for(let char of s) {
+        if(char == "(") {
+            stack.push(char)
+            max = Math.max(stack.length, max);
+        } else if(char == ")") {
+            stack.pop()
+        }
+    }
+    return max;
+};
