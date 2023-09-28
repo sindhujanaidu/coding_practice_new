@@ -12,6 +12,7 @@
  * @return {ListNode}
  */
 var deleteDuplicates = function(head) {
+    // sol 1 - referred
     if(!head) return null;
     let current = head.next;
     let prev = head;
@@ -26,4 +27,15 @@ var deleteDuplicates = function(head) {
         current = current.next
     }
     return prev;
+
+    // sol 2
+    let temp = head;
+    while(temp != null && temp.next != null) {
+        if(temp.val == temp.next.val) {
+            temp.next = temp.next.next;
+        } else {
+            temp = temp.next;
+        }
+    }
+    return head;
 };
