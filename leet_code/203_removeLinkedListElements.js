@@ -13,7 +13,7 @@
  * @return {ListNode}
  */
 var removeElements = function(head, val) {
-    
+    // sol 1
     let temp = head;
     while(head != null && head.next != null) {
         if(head.next.val == val) {
@@ -26,4 +26,16 @@ var removeElements = function(head, val) {
         return temp.next;
     }
     return temp;
+
+    // sol 2
+    let temp = new ListNode(-1, head);
+    let curr = temp;
+    while(curr != null && curr.next != null) {
+        if(curr.next.val == val) {
+            curr.next = curr.next.next;
+        } else {
+            curr = curr.next;
+        }
+    }
+    return temp.next;
 };
