@@ -1,4 +1,6 @@
 // https://www.hackerrank.com/challenges/tree-inorder-traversal/
+// https://www.hackerrank.com/challenges/tree-postorder-traversal
+// https://www.hackerrank.com/challenges/tree-preorder-traversal/
 
 var Tree = function() {
     this.root = null;
